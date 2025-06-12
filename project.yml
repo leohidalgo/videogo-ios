@@ -23,3 +23,6 @@ targets:
           - name: Run SwiftLint
             path: scripts/swiftlint.sh
             basedOnDependencyAnalysis: false
+
+localPackages:
+  - Packages/Core/Localizable
