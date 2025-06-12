@@ -19,3 +19,7 @@ targets:
         type: application
         platform: iOS
         sources: [Sources]
+        preBuildScripts:
+          - name: Run SwiftLint
+            path: scripts/swiftlint.sh
+            basedOnDependencyAnalysis: false
