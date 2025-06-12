@@ -19,6 +19,9 @@ targets:
         type: application
         platform: iOS
         sources: [Sources]
+        dependencies:
+            - package: Localizable
+            - package: MediaFeature
         preBuildScripts:
           - name: Run SwiftLint
             path: scripts/swiftlint.sh
@@ -26,3 +29,4 @@ targets:
 
 localPackages:
   - Packages/Core/Localizable
+  - Packages/Features/MediaFeature
