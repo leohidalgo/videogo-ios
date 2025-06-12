@@ -1,0 +1,21 @@
+name: VideoGO-iOS
+
+options:
+    bundleIdPrefix: com.leohidalgo
+    minimumXcodeGenVersion: 2.43.0
+    developmentLanguage: en
+    indentWidth: 4
+    tabWidth: 4
+    xcodeVersion: 1640
+    groupSortPosition: top
+    generateEmptyDirectories: true
+
+configFiles:
+    Debug: xcconfigs/General.xcconfig
+    Release: xcconfigs/General.xcconfig
+
+targets:
+    VideoGo:
+        type: application
+        platform: iOS
+        sources: [Sources]

@@ -26,3 +26,6 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+## xcodegen
+*.xcodeproj
