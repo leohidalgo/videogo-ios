@@ -1,16 +1,14 @@
+import Localizable
+import MediaFeature
 import SwiftUI
 
 struct ContentView: View {
 
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-                .accessibilityHidden(true)
-            Text("Hello, world!")
+        TabView {
+            NavigationStack { ItemView() }
+                .tabItem { Label(L10n.Home.Tab.title, systemImage: "play.rectangle.fill") }
         }
-        .padding()
     }
 }
 
