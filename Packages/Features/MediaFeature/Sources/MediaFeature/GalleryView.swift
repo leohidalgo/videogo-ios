@@ -14,7 +14,14 @@ struct GalleryView: View {
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(items, id: \.id) { item in
-                        ItemView(image: item.image)
+                        if let video = item.video {
+                            let destination = DetailScene(title: item.title, description: item.description, video: video)
+                            NavigationLink(destination: destination) {
+                                ItemView(image: item.image)
+                            }
+                        } else {
+                            ItemView(image: item.image)
+                        }
                     }
                 }
                 .padding()

@@ -5,12 +5,12 @@ import Foundation
 @MainActor
 final class MockMediaRepository: MediaRepository {
 
-    var fetchMediaCalled = false
-    var mediaToReturn: [MediaModel] = []
+    var fetchMediasCalled = false
+    var mediasToReturn: [MediaModel] = []
 
-    func fetchMedia() -> [MediaModel] {
-        fetchMediaCalled = true
+    func fetchMedias() -> [MediaModel] {
+        fetchMediasCalled = true
 
-        return mediaToReturn
+        return mediasToReturn
     }
 }
