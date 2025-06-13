@@ -15,17 +15,17 @@ struct HomeViewModelTests {
         let mockRepository = MockMediaRepository()
         let sut = HomeViewModel(repository: mockRepository)
 
-        try #require(mockRepository.fetchMediaCalled == false)
+        try #require(mockRepository.fetchMediasCalled == false)
 
         await sut.refreshData()
 
-        #expect(mockRepository.fetchMediaCalled)
+        #expect(mockRepository.fetchMediasCalled)
     }
 
     @Test
     func test_refreshData_shouldFilterMediaByCategory() async throws {
         let mockRepository = MockMediaRepository()
-        mockRepository.mediaToReturn = [
+        mockRepository.mediasToReturn = [
             try Helper.makeMediaModel(category: .tvDrama),
             try Helper.makeMediaModel(category: .tvSerie),
             try Helper.makeMediaModel(category: .tvSerie),
@@ -35,7 +35,7 @@ struct HomeViewModelTests {
         ]
         let sut = HomeViewModel(repository: mockRepository)
 
-        try #require(mockRepository.fetchMediaCalled == false)
+        try #require(mockRepository.fetchMediasCalled == false)
 
         await sut.refreshData()
 

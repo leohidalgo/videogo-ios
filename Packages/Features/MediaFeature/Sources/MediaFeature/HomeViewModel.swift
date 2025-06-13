@@ -15,7 +15,7 @@ final class HomeViewModel: ObservableObject {
     }
 
     func refreshData() async {
-        let medias = await self.repository.fetchMedia()
+        let medias = await self.repository.fetchMedias()
 
         await MainActor.run {
             self.continueWatching = []

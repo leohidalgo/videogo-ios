@@ -1,5 +1,5 @@
 import Foundation
 
 protocol MediaRepository: Sendable {
-    func fetchMedia() async -> [MediaModel]
+    func fetchMedias() async -> [MediaModel]
 }
