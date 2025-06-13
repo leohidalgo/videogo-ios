@@ -1,3 +1,11 @@
 "Home.Tab.title" = "VideoGo";
+"Home.Navigation.title" = "VideoGo";
+"Home.Category.ContinueWatching.title" = "Continua viendo...";
+"Home.Category.TVDrama.title" = "Teleseries";
+"Home.Category.TVDrama.description" = "Historias emocionantes que te atrapan episodio tras episodio";
+"Home.Category.TVSeries.title" = "Series de TV";
+"Home.Category.TVSeries.description" = "Favoritos de siempre, desde entrevistas hasta realities imperdibles";
+"Home.Category.TVShow.title" = "Programas de TV";
+"Home.Category.TVShow.description" = "Favoritos de siempre, desde entrevistas hasta realities imperdibles";
 
 "Gallery.more.title" = "Ver más";

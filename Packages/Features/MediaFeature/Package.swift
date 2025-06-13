@@ -21,10 +21,16 @@ let package = Package(
         .target(
             name: "MediaFeature",
             dependencies: [
-                "Localizable",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+                "Localizable"
             ],
             path: "Sources"
+        ),
+        .testTarget(
+            name: "MediaFeatureTests",
+            dependencies: [
+                "MediaFeature"
+            ],
+            path: "Tests"
         ),
         .testTarget(
             name: "MediaFeatureSnapshotTests",
