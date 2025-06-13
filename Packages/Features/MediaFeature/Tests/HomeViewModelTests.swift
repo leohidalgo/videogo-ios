@@ -1,4 +1,5 @@
 import Combine
+import Foundation
 import SnapshotTesting
 import Testing
 
@@ -19,5 +20,49 @@ struct HomeViewModelTests {
         await sut.refreshData()
 
         #expect(mockRepository.fetchMediaCalled)
+    }
+
+    @Test
+    func test_refreshData_shouldFilterMediaByCategory() async throws {
+        let mockRepository = MockMediaRepository()
+        mockRepository.mediaToReturn = [
+            try Helper.makeMediaModel(category: .tvDrama),
+            try Helper.makeMediaModel(category: .tvSerie),
+            try Helper.makeMediaModel(category: .tvSerie),
+            try Helper.makeMediaModel(category: .tvShow),
+            try Helper.makeMediaModel(category: .tvShow),
+            try Helper.makeMediaModel(category: .tvShow)
+        ]
+        let sut = HomeViewModel(repository: mockRepository)
+
+        try #require(mockRepository.fetchMediaCalled == false)
+
+        await sut.refreshData()
+
+        #expect(sut.tvDramas.count == 1)
+        #expect(sut.tvSeries.count == 2)
+        #expect(sut.tvShows.count == 3)
+    }
+}
+
+private extension Helper {
+
+    static func makeMediaModel(
+        title: String = "",
+        description: String = "",
+        image: URL? = nil,
+        video: URL? = nil,
+        category: CategoryKind = .tvDrama
+    ) throws -> MediaModel {
+
+        let defaultURL = try #require(URL(string: "http://example.com"))
+
+        return MediaModel(
+            title: title,
+            description: description,
+            image: image ?? defaultURL,
+            video: video,
+            category: category
+        )
     }
 }
