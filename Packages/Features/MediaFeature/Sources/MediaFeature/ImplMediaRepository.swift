@@ -15,14 +15,17 @@ final class ImplMediaRepository: MediaRepository {
 
                     guard
                         let title = data["title"] as? String,
-                        let description = data["description"] as? String,
                         let imageRawValue = data["image"] as? String,
                         let image = URL(string: imageRawValue),
                         let categoryRawValue = data["category"] as? String,
                         let category = CategoryKind(rawValue: categoryRawValue)
                     else { return nil }
 
-                    return MediaModel(title: title, description: description, image: image, category: category)
+                    let description = data["description"] as? String
+                    let videoRawValue = data["video"] as? String
+                    let video = videoRawValue.flatMap(URL.init(string:))
+
+                    return MediaModel(title: title, description: description, image: image, video: video, category: category)
                 }
 
                 continuation.resume(returning: items)

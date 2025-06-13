@@ -34,13 +34,21 @@ struct GalleryViewSnapshotTests {
 
 private extension Helper {
 
-    static func makeMediaModel(title: String = "", description: String = "", image: URL? = nil, category: CategoryKind = .tvDrama) throws -> MediaModel {
+    static func makeMediaModel(
+        title: String = "",
+        description: String = "",
+        image: URL? = nil,
+        video: URL? = nil,
+        category: CategoryKind = .tvDrama
+    ) throws -> MediaModel {
+
         let defaultURL = try #require(URL(string: "http://example.com"))
 
         return MediaModel(
             title: title,
             description: description,
             image: image ?? defaultURL,
+            video: video,
             category: category
         )
     }
