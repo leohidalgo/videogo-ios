@@ -1,13 +1,13 @@
 import Localizable
 import SwiftUI
 
-public struct GalleryView: View {
+struct GalleryView: View {
 
     private let title: String
     private let description: String?
     private let items: [MediaModel]
 
-    public var body: some View {
+    var body: some View {
         VStack(alignment: .leading) {
             makeTitle(text: title, description: description)
                 .padding(.horizontal)
@@ -27,13 +27,13 @@ public struct GalleryView: View {
         }
     }
 
-    public init(title: String, description: String? = nil, items: [MediaModel]) {
+    init(title: String, description: String? = nil, items: [MediaModel]) {
         self.title = title
         self.description = description
         self.items = items
     }
 
-    private func makeTitle(text: String, description: String?) -> some View {
+    func makeTitle(text: String, description: String?) -> some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(text)
