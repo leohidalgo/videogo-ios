@@ -15,13 +15,19 @@ let package = Package(
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing",
             from: "1.12.0"
+        ),
+        .package(
+            name: "Firebase",
+            url: "https://github.com/firebase/firebase-ios-sdk",
+            from: "11.14.0"
         )
     ],
     targets: [
         .target(
             name: "MediaFeature",
             dependencies: [
-                "Localizable"
+                "Localizable",
+                .product(name: "FirebaseFirestore", package: "Firebase"),
             ],
             path: "Sources"
         ),

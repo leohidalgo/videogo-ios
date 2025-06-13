@@ -57,5 +57,7 @@ jobs:
             uses: actions/download-artifact@v4
             with:
                 name: workspace
+          - name: Tests
+            run: make tests
           - name: SnapshotTests
             run: make snapshot_tests

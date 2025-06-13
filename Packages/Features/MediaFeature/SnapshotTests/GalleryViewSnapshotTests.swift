@@ -1,3 +1,4 @@
+import Foundation
 import SnapshotTesting
 import Testing
 
@@ -7,26 +8,40 @@ import Testing
 struct GalleryViewSnapshotTests {
 
     @Test
-    func test_view_shouldBeEqualToSnapshot() {
-        let items = Array(repeating: MediaModel(category: .TVDrama), count: 8)
+    func test_view_shouldBeEqualToSnapshot() throws {
+        let items = try Array(repeating: Helper.makeMediaModel(), count: 8)
         let sut = GalleryView(title: "foo.title", description: "foo.description", items: items)
 
         assertSnapshot(of: sut, as: .image(layout: .fixed(width: 1000, height: 280)))
     }
 
     @Test
-    func test_view_whenItemsAreLessThan7_shouldBeEqualToSnapshot() {
-        let items = Array(repeating: MediaModel(category: .TVDrama), count: 7)
+    func test_view_whenItemsAreLessThan7_shouldBeEqualToSnapshot() throws {
+        let items = try Array(repeating: Helper.makeMediaModel(), count: 7)
         let sut = GalleryView(title: "foo.title", description: "foo.description", items: items)
 
         assertSnapshot(of: sut, as: .image(layout: .fixed(width: 1000, height: 280)))
     }
 
     @Test
-    func test_view_whenDescriptionIsNil_shouldBeEqualToSnapshot() {
-        let items = Array(repeating: MediaModel(category: .TVDrama), count: 7)
+    func test_view_whenDescriptionIsNil_shouldBeEqualToSnapshot() throws {
+        let items = try Array(repeating: Helper.makeMediaModel(), count: 7)
         let sut = GalleryView(title: "foo.title", description: nil, items: items)
 
         assertSnapshot(of: sut, as: .image(layout: .fixed(width: 1000, height: 280)))
+    }
+}
+
+private extension Helper {
+
+    static func makeMediaModel(title: String = "", description: String = "", image: URL? = nil, category: CategoryKind = .tvDrama) throws -> MediaModel {
+        let defaultURL = try #require(URL(string: "http://example.com"))
+
+        return MediaModel(
+            title: title,
+            description: description,
+            image: image ?? defaultURL,
+            category: category
+        )
     }
 }
