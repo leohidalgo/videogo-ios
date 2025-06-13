@@ -13,12 +13,8 @@ struct GalleryView: View {
                 .padding(.horizontal)
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(items, id: \.id) { _ in
-                        ItemView()
-                    }
-
-                    if items.count > 7 {
-                        ItemView(title: L10n.Gallery.More.title)
+                    ForEach(items, id: \.id) { item in
+                        ItemView(image: item.image)
                     }
                 }
                 .padding()
@@ -48,12 +44,4 @@ struct GalleryView: View {
             }
         }
     }
-}
-
-#Preview {
-    let itemsA = Array(repeating: MediaModel(id: UUID(), category: .TVShow), count: 7)
-    GalleryView(title: "foo.title", description: "foo.description", items: itemsA)
-
-    let itemsB = Array(repeating: MediaModel(id: UUID(), category: .TVShow), count: 10)
-    GalleryView(title: "foo.title", description: "foo.description", items: itemsB)
 }

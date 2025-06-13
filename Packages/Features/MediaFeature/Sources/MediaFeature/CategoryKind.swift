@@ -1,7 +1,7 @@
 import Foundation
 
-enum CategoryKind {
-    case TVDrama
-    case TVSerie
-    case TVShow
+enum CategoryKind: String {
+    case tvDrama = "tv_drama"
+    case tvSerie = "tv_serie"
+    case tvShow = "tv_show"
 }
