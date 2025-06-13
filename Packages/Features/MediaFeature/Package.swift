@@ -11,9 +11,28 @@ let package = Package(
         .library(name: "MediaFeature", targets: ["MediaFeature"])
     ],
     dependencies: [
-        .package(path: "../../Localizable")
+        .package(path: "../../Localizable"),
+        .package(
+            url: "https://github.com/pointfreeco/swift-snapshot-testing",
+            from: "1.12.0"
+        )
     ],
     targets: [
-        .target(name: "MediaFeature", dependencies: ["Localizable"])
+        .target(
+            name: "MediaFeature",
+            dependencies: [
+                "Localizable",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "MediaFeatureSnapshotTests",
+            dependencies: [
+                "MediaFeature",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            ],
+            path: "SnapshotTests"
+        )
     ]
 )

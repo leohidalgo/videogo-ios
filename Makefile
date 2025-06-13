@@ -1,4 +1,4 @@
-.PHONY: l10n lint xcodeproj
+.PHONY: l10n lint snapshot_tests xcodeproj
 
 l10n:
 	@swiftgen --config Packages/Core/Localizable/.swiftgen.yml
@@ -6,5 +6,8 @@ l10n:
 lint:
 	@swiftlint lint --strict --progress
 
+snapshot_tests:
+	@xcodebuild -scheme MediaFeatureSnapshotTests -destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=18.5" test | xcbeautify
+
 xcodeproj:
-	xcodegen generate
+	@xcodegen generate

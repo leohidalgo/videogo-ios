@@ -48,3 +48,14 @@ jobs:
                 name: workspace
           - name: Swiftlint
             run: make lint
+
+    tests:
+        runs-on: [self-hosted]
+        needs: [lint]
+        steps:
+          - name: Attach Workspace
+            uses: actions/download-artifact@v4
+            with:
+                name: workspace
+          - name: SnapshotTests
+            run: make snapshot_tests

@@ -1,10 +1,10 @@
 import SwiftUI
 
-public struct ItemView: View {
+struct ItemView: View {
 
     private let title: String?
 
-    public var body: some View {
+    var body: some View {
         ZStack {
             Rectangle()
                 .fill(.gray)
@@ -13,12 +13,13 @@ public struct ItemView: View {
             if let title {
                 Text(title)
                     .foregroundStyle(.white)
+                    .font(.footnote)
             }
         }
         .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 4)
     }
 
-    public init(title: String? = nil) {
+    init(title: String? = nil) {
         self.title = title
     }
 }

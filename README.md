@@ -8,7 +8,7 @@
 
 ```shell
 brew update
-brew install swiftgen swiftlint xcodegen
+brew install swiftgen swiftlint xcodegen xcbeautify
 ```
 
 ## :construction_worker: Development
@@ -25,6 +25,7 @@ The tests in Github Actions only run when a `Pull Request` is generated to `main
 ## :rocket: Make targets
 | target | Description
 |--|--|
-| l10n      | Execute `swiftgen` in the `Packages/Core/Localizable` package, generate the enum `L10n` with all text keys.
-| lint      | Execute `swiftlint` at the root of the project, this allows you validate the app and its packages.
-| xcodeproj | Generate the `*.xcodeproj` with `XcodeGen` for the app.
+| l10n           | Execute `swiftgen` in the `Packages/Core/Localizable` package, generate the enum `L10n` with all text keys.
+| lint           | Execute `swiftlint` at the root of the project, this allows you validate the app and its packages.
+| snapshot_tests | Execute all snapshot tests using `swift-snapshot-testing`, validating UI consistency across views.
+| xcodeproj      | Generate the `*.xcodeproj` with `XcodeGen` for the app.
