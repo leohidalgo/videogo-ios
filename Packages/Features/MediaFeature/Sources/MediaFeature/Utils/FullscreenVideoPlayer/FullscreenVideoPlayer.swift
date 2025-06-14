@@ -11,7 +11,6 @@ struct FullscreenVideoPlayer: UIViewControllerRepresentable {
         controller.player = player
         controller.entersFullScreenWhenPlaybackBegins = true
         controller.exitsFullScreenWhenPlaybackEnds = true
-        player.play()
         return controller
     }
     // swiftlint:enable unused_parameter
