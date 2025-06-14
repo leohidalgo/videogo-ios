@@ -4,6 +4,7 @@ import SwiftUI
 public struct HomeScene: View {
 
     @StateObject private var viewModel = HomeViewModel(repository: ImplMediaRepository())
+    @State private var showAlert = false
 
     public var body: some View {
         ScrollView {
@@ -16,6 +17,18 @@ public struct HomeScene: View {
         .navigationTitle(L10n.Home.Navigation.title)
         .task(priority: .userInitiated) {
             await viewModel.refreshData()
+        }
+        .onReceive(viewModel.$errorMessage) { message in
+            showAlert = message != nil
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(L10n.Firebase.Error.title),
+                message: Text(viewModel.errorMessage ?? L10n.Firebase.Error.unknown),
+                dismissButton: .default(Text(L10n.Firebase.Error.ok)) {
+                    viewModel.errorMessage = nil
+                }
+            )
         }
         .refreshable {
             await viewModel.refreshData()

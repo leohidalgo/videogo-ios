@@ -2,7 +2,7 @@ import FirebaseFirestore
 import Foundation
 
 final class ImplMediaRepository: MediaRepository {
-    func fetchMedias() async -> [MediaModel] {
+    func fetchMedias() async throws -> [MediaModel] {
         await withCheckedContinuation { continuation in
             Firestore.firestore().collection("medias").getDocuments { snapshot, error in
                 guard

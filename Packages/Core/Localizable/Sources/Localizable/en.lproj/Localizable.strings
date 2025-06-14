@@ -8,4 +8,9 @@
 "Home.Category.TVShow.title" = "Programas de TV";
 "Home.Category.TVShow.description" = "Favoritos de siempre, desde entrevistas hasta realities imperdibles";
 
+"Firebase.error.title" = "Error";
+"Firebase.error" = "Error al leer Firestore: \(%@)";
+"Firebase.error.unknown" = "Desconocido";
+"Firebase.error.ok" = "OK";
+
 "Gallery.more.title" = "Ver más";

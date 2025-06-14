@@ -1,4 +1,5 @@
 import Foundation
+import Localizable
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -7,6 +8,7 @@ final class HomeViewModel: ObservableObject {
     @Published var tvDramas: [MediaModel] = []
     @Published var tvSeries: [MediaModel] = []
     @Published var tvShows: [MediaModel] = []
+    @Published var errorMessage: String?
 
     private let repository: MediaRepository
 
@@ -15,13 +17,17 @@ final class HomeViewModel: ObservableObject {
     }
 
     func refreshData() async {
-        let medias = await self.repository.fetchMedias()
+        do {
+            let medias = try await self.repository.fetchMedias()
 
-        await MainActor.run {
-            self.continueWatching = []
-            self.tvDramas = medias.filter { $0.category == .tvDrama }
-            self.tvSeries = medias.filter { $0.category == .tvSerie }
-            self.tvShows = medias.filter { $0.category == .tvShow }
+            await MainActor.run {
+                self.continueWatching = []
+                self.tvDramas = medias.filter { $0.category == .tvDrama }
+                self.tvSeries = medias.filter { $0.category == .tvSerie }
+                self.tvShows = medias.filter { $0.category == .tvShow }
+            }
+        } catch {
+            errorMessage = L10n.Firebase.error(error.localizedDescription)
         }
     }
 }
