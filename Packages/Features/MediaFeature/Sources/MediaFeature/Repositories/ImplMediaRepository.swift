@@ -25,7 +25,7 @@ final class ImplMediaRepository: MediaRepository {
                     let videoRawValue = data["video"] as? String
                     let video = videoRawValue.flatMap(URL.init(string:))
 
-                    return MediaModel(title: title, description: description, image: image, video: video, category: category)
+                    return MediaModel(id: document.documentID, title: title, description: description, image: image, video: video, category: category)
                 }
 
                 continuation.resume(returning: items)

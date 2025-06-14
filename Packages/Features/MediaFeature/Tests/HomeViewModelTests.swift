@@ -58,6 +58,7 @@ private extension Helper {
         let defaultURL = try #require(URL(string: "http://example.com"))
 
         return MediaModel(
+            id: UUID().uuidString,
             title: title,
             description: description,
             image: image ?? defaultURL,
